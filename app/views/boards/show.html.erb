@@ -53,7 +53,8 @@
 
 <h2>Active posts</h2>
 
-<% matching_posts = Post.where({ :board_id => @the_board.id }).order({ :expires_on => :asc}) %>
+<% today = Date.today %>
+<% matching_posts = Post.where("board_id = ? AND expires_on >= ?",  @the_board.id, today).order({ :expires_on => :asc }) %>
 
 <table border="1">
   <tr>
